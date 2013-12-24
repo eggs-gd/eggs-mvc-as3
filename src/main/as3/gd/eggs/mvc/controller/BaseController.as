@@ -34,7 +34,8 @@
 		 */
 		protected function sendNotification(type:String, data:Object = null):void
 		{
-			_noteBus.dispatchEvent(new Notification(type, data, this));
+			var note:Notification = new Notification(type, data, this);
+			_noteBus.dispatchEvent(note);
 		}
 
 		/**
