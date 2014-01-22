@@ -10,7 +10,7 @@ package gd.eggs.mvc.app
 	import flash.display.DisplayObjectContainer;
 
 
-	public function applicationStartup(bootstrap:IBootstrap, root:DisplayObjectContainer)
+	public function applicationStartup(bootstrap:IBootstrap, root:DisplayObjectContainer):void
 	{
 
 		bootstrap.registerModels();
