@@ -1,6 +1,3 @@
-/**
- * Created by Dukobpa3 on 11/6/13.
- */
 package gd.eggs.mvc.controller
 {
 	import flash.events.Event;
