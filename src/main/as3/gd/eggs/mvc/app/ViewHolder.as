@@ -4,7 +4,7 @@
 	import flash.display.DisplayObjectContainer;
 	import flash.utils.Dictionary;
 
-	import gd.eggs.mvc.view.BaseView;
+	import gd.eggs.mvc.view.View;
 	import gd.eggs.util.Validate;
 
 
@@ -12,7 +12,7 @@
 	 * Класс для управления вьюхами приложения. Поддерживает несколько слоев.
 	 * Слои сортируются снаружи. Вьюхи сортируются здесь, каждая в пределах своего контейнера-слоя
 	 */
-	public class ViewManager
+	public class ViewHolder
 	{
 		private static var _scopes:Object = {}; //:Map<EnumValue, DisplayObjectContainer> = new Map();
 		private static var _views:Object = {}; //:Map<EnumValue, AView> = new Map();
@@ -38,7 +38,7 @@
 		 * @param viewName  Имя вью
 		 * @param view      Ссылка на вью
 		 */
-		public static function addView(scope:String, viewName:String, view:BaseView):void
+		public static function addView(scope:String, viewName:String, view:View):void
 		{
 			if (Validate.isNull(scope)) throw new Error("scope is null");
 			if (Validate.isNull(viewName)) throw new Error("viewName is null");
@@ -57,7 +57,7 @@
 		 * @param viewName  Имя вью
 		 * @return  Ссылка на вью
 		 */
-		public static function getView(viewName:String):BaseView
+		public static function getView(viewName:String):View
 		{
 			if (Validate.isNull(viewName)) throw new Error("viewName is null");
 			if (!_views.hasOwnProperty(viewName)) throw new Error("!_views.exists(viewName), viewName: " + viewName);
@@ -75,7 +75,7 @@
 			if (Validate.isNull(viewName)) throw new Error("viewName is null");
 			if (!_views.hasOwnProperty(viewName)) throw new Error("!_views.exists(viewName), viewName: " + viewName);
 
-			var view:BaseView = _views[viewName];
+			var view:View = _views[viewName];
 
 			_scopeByView[view].addChild(view);
 			view.show();
@@ -98,7 +98,7 @@
 		 */
 		public static function hideAll():void
 		{
-			for each (var it:BaseView in _views) it.hide();
+			for each (var it:View in _views) it.hide();
 		}
 
 	}

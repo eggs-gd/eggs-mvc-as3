@@ -10,7 +10,7 @@
 	 * Базовый класс контроллера. Умеет слушать и слать нотификации в обсервер.
 	 * @author Dukobpa3
 	 */
-	public class BaseController implements IInitialize
+	public class Controller implements IInitialize
 	{
 		/**
 		 * Шина для передачи данных между контроллерами.
@@ -22,7 +22,7 @@
 		private var _isInited:Boolean;
 
 
-		public function BaseController()
+		public function Controller()
 		{
 			_noteBus = _noteBus || new EventDispatcher();
 		}

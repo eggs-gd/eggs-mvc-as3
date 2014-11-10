@@ -3,7 +3,7 @@
 	import flash.display.Sprite;
 	import flash.events.Event;
 
-	import gd.eggs.mvc.model.BaseModel;
+	import gd.eggs.mvc.model.Model;
 	import gd.eggs.util.IInitialize;
 
 
@@ -16,10 +16,10 @@
 	 * Остальные подписки следует добавить в инит и дестрой
 	 * @author Dukobpa3
 	 */
-	public class BaseView extends Sprite implements IInitialize
+	public class View extends Sprite implements IInitialize
 	{
 		/** Данные для отображения */
-		protected var _model:BaseModel;
+		protected var _model:Model;
 
 		private var _inited:Boolean;
 
@@ -28,12 +28,12 @@
 		 * @param    model модель (можно не указывать)
 		 * @param    update отрисовывать ли сразу при создании
 		 */
-		public function BaseView(model:BaseModel = null, update:Boolean = true)
+		public function View(model:Model = null, update:Boolean = true)
 		{
 			if (model)
 			{
 				_model = model;
-				_model.addCallback(this, BaseModel.DEFAULT_CHANGE, onModelChange);
+				_model.addCallback(this, Model.DEFAULT_CHANGE, onModelChange);
 				if (update) _model.refresh();
 			}
 		}
@@ -63,7 +63,7 @@
 		 * @param    model модель
 		 * @param    update нужно ли рендерить сразу после установки
 		 */
-		public function setModel(model:BaseModel, update:Boolean = true):void
+		public function setModel(model:Model, update:Boolean = true):void
 		{
 			if (_model)
 			{
@@ -72,7 +72,7 @@
 			}
 
 			_model = model;
-			_model.addCallback(this, BaseModel.DEFAULT_CHANGE, onModelChange);
+			_model.addCallback(this, Model.DEFAULT_CHANGE, onModelChange);
 			if (update) _model.refresh();
 		}
 

@@ -18,7 +18,7 @@
 	 *
 	 * @author Dukobpa3
 	 */
-	public class BaseDataModel extends BaseModel
+	public class DataModel extends Model
 	{
 		public static const DATA_MODEL_CHANGE:String = "dataModelChange";
 
@@ -30,7 +30,7 @@
 		 * так же нужно в констркуторе указывать инициализацию всех нужных параметров нуждающихся в автообновлеении и вставлять их в этот объект.
 		 * Имена параметров должны в точности совпадать с серверными.
 		 */
-		public function BaseDataModel()
+		public function DataModel()
 		{
 			super();
 			_data = {};
@@ -49,7 +49,7 @@
 			{
 				if (_data.hasOwnProperty(key)) // если в дате есть такой ключ
 				{
-					if (_data[key] is BaseDataModel) // и если этот ключ является BaseDataModel
+					if (_data[key] is DataModel) // и если этот ключ является BaseDataModel
 					{
 						_data[key].deserialize.call(this, data[key]) // значит в нем должен быть метод автоапдейта. Запускаем его
 					}

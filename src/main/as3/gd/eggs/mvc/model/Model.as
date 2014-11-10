@@ -16,7 +16,7 @@
 	 * чтобы не производить весь рендер каждый апдейт.
 	 * @author Dukobpa3
 	 */
-	public class BaseModel implements IInitialize
+	public class Model implements IInitialize
 	{
 		public static const DEFAULT_CHANGE:String = "default";
 
@@ -30,7 +30,7 @@
 		/**
 		 *
 		 */
-		public function BaseModel()
+		public function Model()
 		{
 			_callbacks = new Dictionary();
 		}
