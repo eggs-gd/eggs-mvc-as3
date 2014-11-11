@@ -1,14 +1,17 @@
 ﻿package gd.eggs.mvc.app
 {
 
-	import flash.display.DisplayObjectContainer;
-	import flash.utils.Dictionary;
+    import flash.display.DisplayObjectContainer;
+    import flash.utils.Dictionary;
 
-	import gd.eggs.mvc.view.View;
+    import gd.eggs.mvc.view.IView;
+
 	import gd.eggs.util.Validate;
 
+    import starling.display.DisplayObjectContainer;
 
-	/**
+
+    /**
 	 * Класс для управления вьюхами приложения. Поддерживает несколько слоев.
 	 * Слои сортируются снаружи. Вьюхи сортируются здесь, каждая в пределах своего контейнера-слоя
 	 */
@@ -23,7 +26,7 @@
 		 * @param scope     имя слоя
 		 * @param container ссылка на слой-контейнер
 		 */
-		public static function addScope(scope:String, container:DisplayObjectContainer):void
+		public static function addScope(scope:String, container:flash.display.DisplayObjectContainer):void
 		{
 			if (Validate.isNull(scope)) throw new Error("scope is null");
 			if (Validate.isNull(container)) throw new Error("container is null");
@@ -32,13 +35,27 @@
 			_scopes[scope] = container;
 		}
 
+        /**
+         * Добавить слой
+         * @param scope     имя слоя
+         * @param container ссылка на слой-контейнер
+         */
+        public static function addStarlingScope(scope:String, container:starling.display.DisplayObjectContainer):void
+        {
+            if (Validate.isNull(scope)) throw new Error("scope is null");
+            if (Validate.isNull(container)) throw new Error("container is null");
+            if (_scopes.hasOwnProperty(scope)) throw new Error("_scopes.exists(scope), scope: " + scope);
+
+            _scopes[scope] = container;
+        }
+
 		/**
 		 * Добавить вью в указанный слой
 		 * @param scope     Имя слоя
 		 * @param viewName  Имя вью
 		 * @param view      Ссылка на вью
 		 */
-		public static function addView(scope:String, viewName:String, view:View):void
+		public static function addView(scope:String, viewName:String, view:IView, staling:Boolean=false):void
 		{
 			if (Validate.isNull(scope)) throw new Error("scope is null");
 			if (Validate.isNull(viewName)) throw new Error("viewName is null");
@@ -57,7 +74,7 @@
 		 * @param viewName  Имя вью
 		 * @return  Ссылка на вью
 		 */
-		public static function getView(viewName:String):View
+		public static function getView(viewName:String):IView
 		{
 			if (Validate.isNull(viewName)) throw new Error("viewName is null");
 			if (!_views.hasOwnProperty(viewName)) throw new Error("!_views.exists(viewName), viewName: " + viewName);
@@ -75,7 +92,7 @@
 			if (Validate.isNull(viewName)) throw new Error("viewName is null");
 			if (!_views.hasOwnProperty(viewName)) throw new Error("!_views.exists(viewName), viewName: " + viewName);
 
-			var view:View = _views[viewName];
+			var view:IView = _views[viewName];
 
 			_scopeByView[view].addChild(view);
 			view.show();
@@ -98,7 +115,7 @@
 		 */
 		public static function hideAll():void
 		{
-			for each (var it:View in _views) it.hide();
+			for each (var it:IView in _views) it.hide();
 		}
 
 	}

@@ -1,13 +1,12 @@
 ﻿package gd.eggs.mvc.view {
-    import flash.display.Sprite;
-    import flash.events.Event;
-
     import gd.eggs.mvc.model.IModel;
-
     import gd.eggs.util.IInitialize;
 
+    import starling.display.Sprite;
+    import starling.events.Event;
 
-    [Event(name="viewChange", type="gd.eggs.mvc.view.ViewEvent")]
+
+    [Event(name="viewChange", type="gd.eggs.mvc.view.StarlingViewEvent")]
 
     /**
      * Базовый класс-представление
@@ -16,7 +15,7 @@
      * Остальные подписки следует добавить в инит и дестрой
      * @author Dukobpa3
      */
-    public class View extends Sprite implements IInitialize, IView {
+    public class StarlingView extends Sprite implements IInitialize, IView {
         /** Данные для отображения */
         protected var _model:IModel;
 
@@ -27,7 +26,7 @@
          * @param    model модель (можно не указывать)
          * @param    update отрисовывать ли сразу при создании
          */
-        public function View(model:IModel = null, update:Boolean = true) {
+        public function StarlingView(model:IModel = null, update:Boolean = true) {
             if (model) {
                 _model = model;
                 _model.addCallback(this, "default", onModelChange);
@@ -107,7 +106,7 @@
          * Вызывает перерисовку вьюхи немедленно
          */
         public function invalidateNow():void {
-            render();
+            redraw();
         }
 
         //=====================================================================
@@ -131,13 +130,13 @@
          */
         private function onNextFrame(e:Event):void {
             removeEventListener(Event.ENTER_FRAME, onNextFrame);
-            render();
+            redraw();
         }
 
         /**
          * Наследуемый метод обработки данных модели (перерисовка компонента)
          */
-        protected function render():void {
+        protected function redraw():void {
 
         }
 

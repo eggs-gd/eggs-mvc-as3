@@ -1,13 +1,13 @@
 package gd.eggs.mvc.app {
-    import flash.display.DisplayObjectContainer;
+
+    import starling.display.DisplayObjectContainer;
 
 
-    public function applicationStartup(bootstrap:IBootstrap, root:DisplayObjectContainer):void {
+    public function applicationStartupStarling(bootstrap:IStarlingBootstrap, root:DisplayObjectContainer):void {
         bootstrap.registerModels();
         bootstrap.registerViews(root);
         bootstrap.registerControllers();
 
         bootstrap.startup();
     }
-
 }

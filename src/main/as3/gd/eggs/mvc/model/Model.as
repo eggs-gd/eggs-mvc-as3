@@ -16,7 +16,7 @@
 	 * чтобы не производить весь рендер каждый апдейт.
 	 * @author Dukobpa3
 	 */
-	public class Model implements IInitialize
+	public class Model implements IInitialize, IModel
 	{
 		public static const DEFAULT_CHANGE:String = "default";
 

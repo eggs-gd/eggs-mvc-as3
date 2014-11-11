@@ -1,7 +1,7 @@
 ﻿package gd.eggs.mvc.app
 {
 
-	import gd.eggs.mvc.model.Model;
+    import gd.eggs.mvc.model.IModel;
 	import gd.eggs.util.Validate;
 
 
@@ -18,7 +18,7 @@
 		 * @param modelName ключ-имя модели, по которому ее потом можно будет достать
 		 * @param model     ссылка на модель
 		 */
-		public static function addModel(modelName:String, model:Model):void
+		public static function addModel(modelName:String, model:IModel):void
 		{
 			if (Validate.isNull(modelName)) throw new Error("modelName is null");
 			if (Validate.isNull(model)) throw new Error("model is null");
@@ -32,7 +32,7 @@
 		 * @param modelName имя интересующей модели
 		 * @return
 		 */
-		public static function getModel(modelName:String):Model
+		public static function getModel(modelName:String):IModel
 		{
 			if (Validate.isNull(modelName)) throw new Error("modelName is null");
 			if (!_models.hasOwnProperty(modelName)) throw new Error("!_models.exists(modelName), modelName: " + modelName);
