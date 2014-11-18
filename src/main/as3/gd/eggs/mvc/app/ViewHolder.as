@@ -55,7 +55,7 @@
 		 * @param viewName  Имя вью
 		 * @param view      Ссылка на вью
 		 */
-		public static function addView(scope:String, viewName:String, view:IView, staling:Boolean=false):void
+		public static function addView(scope:String, viewName:String, view:IView):void
 		{
 			if (Validate.isNull(scope)) throw new Error("scope is null");
 			if (Validate.isNull(viewName)) throw new Error("viewName is null");
